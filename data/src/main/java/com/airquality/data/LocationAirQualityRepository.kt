@@ -15,7 +15,7 @@ class LocationAirQualityRepository(
 
     fun getNearestAirQuality(): Flow<HomeDataModel> = flow{
         val coordinates = locationRepository.findLastLocation()
-        var data = remoteDataSource.getNearestAirQuality(
+        val data = remoteDataSource.getNearestAirQuality(
             coordinates?.latitude ?: DEFAULT_LATITUDE,
             coordinates?.longitude ?: DEFAULT_LONGITUDE)
         emit(data)
