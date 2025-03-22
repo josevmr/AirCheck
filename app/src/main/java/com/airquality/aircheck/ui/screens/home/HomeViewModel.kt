@@ -1,6 +1,7 @@
 package com.airquality.aircheck.ui.screens.home
 
 import android.content.Context
+import android.location.LocationManager
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.airquality.aircheck.R
@@ -51,6 +52,14 @@ class HomeViewModel(
         }
     }
 
+    fun onGPSDisabled() {
+        _homeState.update {
+            it.copy(
+                message = "Para obtener la calidad del aire en tu ubicación, activa el GPS."
+            )
+        }
+    }
+
     fun onMessageShown() {
         _homeState.update {
             it.copy(
@@ -72,32 +81,45 @@ class HomeViewModel(
         return calculateAirQualityIndex(_homeState.value.data)
     }
 
-    fun getDescriptions() = mapOf(
-        Pair(R.string.pm25_title, R.string.pm25_description),
-        Pair(R.string.pm10_title, R.string.pm10_description),
-        Pair(R.string.ozone_title, R.string.ozone_description),
-        Pair(R.string.no_title, R.string.no_description),
-        Pair(R.string.no2_title, R.string.no2_description),
-        Pair(R.string.so2_title, R.string.so2_description),
-        Pair(R.string.co_title, R.string.co_description),
-        Pair(R.string.bc_title, R.string.bc_description)
-    )
+    fun isLocationEnabled(context: Context): Boolean {
+        val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+    }
 
-    fun getParameterTitle(parameter: String, context: Context): String {
+    fun getParameterDescription(parameter: String, context: Context): Pair<String, String> {
         return when (parameter) {
-            "um003" -> context.getString(R.string.um003_title_with_unit)
-            "pm1" -> context.getString(R.string.pm1_title_with_unit)
-            "PM10" -> context.getString(R.string.pm10_title_with_unit)
-            "relativehumidity" -> context.getString(R.string.relative_humidity_title_with_unit)
-            "temperature" -> context.getString(R.string.temperature_with_unit)
-            "PM2.5" -> context.getString(R.string.pm25_title_with_unit)
-            "NO2" -> context.getString(R.string.no2_title_with_unit)
-            "nox" -> context.getString(R.string.nox_title_with_unit)
-            "no" -> context.getString(R.string.no_title_with_unit)
-            "Ozone" -> context.getString(R.string.o3_title_with_unit)
-            "CO" -> context.getString(R.string.co_title_with_unit)
-            "SO2" -> context.getString(R.string.so2_title_with_unit)
-            else -> parameter
+            "PM 10" -> Pair(
+                context.getString(R.string.pm10_title),
+                context.getString(R.string.pm10_description)
+            )
+
+            "PM 2.5" -> Pair(
+                context.getString(R.string.pm25_title),
+                context.getString(R.string.pm25_description)
+            )
+
+            "NO₂" -> Pair(
+                context.getString(R.string.no2_title),
+                context.getString(R.string.no2_description)
+            )
+
+            "O₃" -> Pair(
+                context.getString(R.string.ozone_title),
+                context.getString(R.string.ozone_description)
+            )
+
+            "CO" -> Pair(
+                context.getString(R.string.co_title),
+                context.getString(R.string.co_description)
+            )
+
+            "SO₂" -> Pair(
+                context.getString(R.string.so2_title),
+                context.getString(R.string.so2_description)
+            )
+
+            else -> Pair("", "")
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.airquality.data
 
 import com.airquality.domain.HomeDataModel
+import com.airquality.domain.datasource.HistoricForecastDataModel
 import com.airquality.domain.datasource.ILocationAirQualityDataSource
 import com.airquality.shared.*
 import kotlinx.coroutines.flow.Flow
@@ -13,9 +14,25 @@ class LocationAirQualityRepository(
     private val locationRepository: LocationRepository
 ) {
 
-    fun getNearestAirQuality(): Flow<HomeDataModel> = flow{
+    fun getAirQuality(): Flow<HomeDataModel> = flow{
         val coordinates = locationRepository.findLastLocation()
-        val data = remoteDataSource.getNearestAirQuality(
+        val data = remoteDataSource.getAirQuality(
+            coordinates?.latitude ?: DEFAULT_LATITUDE,
+            coordinates?.longitude ?: DEFAULT_LONGITUDE)
+        emit(data)
+    }
+
+    fun getHistoricAirQuality(): Flow<HistoricForecastDataModel> = flow{
+        val coordinates = locationRepository.findLastLocation()
+        val data = remoteDataSource.getHistoricAirQuality(
+            coordinates?.latitude ?: DEFAULT_LATITUDE,
+            coordinates?.longitude ?: DEFAULT_LONGITUDE)
+        emit(data)
+    }
+
+    fun getForecastAirQuality(): Flow<HistoricForecastDataModel> = flow{
+        val coordinates = locationRepository.findLastLocation()
+        val data = remoteDataSource.getForecastAirQuality(
             coordinates?.latitude ?: DEFAULT_LATITUDE,
             coordinates?.longitude ?: DEFAULT_LONGITUDE)
         emit(data)

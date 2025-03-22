@@ -52,7 +52,7 @@ object QualityColorBuilders {
     private fun unhealthyQualityBuilder(): QualityColorModel {
         return QualityColorModel(
             imageColor = R.color.unhealthyColor,
-            image = R.drawable.amarillo
+            image = R.drawable.rojo
         )
     }
 

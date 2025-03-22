@@ -1,6 +1,6 @@
 package com.airquality.domain
 
-data class HomeDataModel (
+data class HomeDataModel(
     val city: String = "",
     val parameters: List<AirParameter>? = null,
     val coordinates: AirCoordinates? = null,
