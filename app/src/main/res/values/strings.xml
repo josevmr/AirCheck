@@ -38,11 +38,11 @@
     <string name="noData_text">Sin datos</string>
     <string name="icon_credits_title">Créditos de iconos</string>
     <string name="aqi_colors_title">El Índice de Calidad del Aire (AQI) sigue la escala de la EPA de EE.UU. Se basa en los valores máximos de los contaminantes y se representa con los siguientes colores:</string>
-    <string name="good_text">0-50: Bueno</string>
-    <string name="moderate_text">51-100: Moderado</string>
-    <string name="unhealthy_sensible_text">101-150: No saludable para grupos sensibles</string>
-    <string name="unhealthy_text">151-200: No saludable</string>
-    <string name="very_unhealthy_text">201-300: Muy no saludable</string>
+    <string name="good_text">0–50: Bueno</string>
+    <string name="moderate_text">51–100: Moderado</string>
+    <string name="unhealthy_sensible_text">101–150: No saludable para grupos sensibles</string>
+    <string name="unhealthy_text">151–200: No saludable</string>
+    <string name="very_unhealthy_text">201–300: Muy no saludable</string>
     <string name="hazardous_text">300+: Peligroso</string>
     <string name="ok_text">Aceptar</string>
     <string name="warning_title">Aviso</string>
