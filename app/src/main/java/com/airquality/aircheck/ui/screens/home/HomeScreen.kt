@@ -91,14 +91,13 @@ fun HomeScreen(
             if (vm.isLocationEnabled(context)) {
                 vm.onUiReady()
             } else {
-                vm.onGPSDisabled() // ✅ Se usa el mensaje del UiState
+                vm.onGPSDisabled(context)
             }
         } else {
-            vm.onPermissionDenied()
+            vm.onPermissionDenied(context)
         }
     }
 
-    // Mostrar mensaje si existe
     if (state.message.isNotEmpty()) {
         GPSDisabledDialog(
             showDialog = state.message.isNotEmpty(),
@@ -168,13 +167,11 @@ private fun Screen(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // HEADER
-
         item {
             val qualityColorModel = QualityColorBuilders.getQualityColorModel(airQualityIndex)
 
             Text(
-                text = "${stringResource(R.string.air_quality)} (AQI)",
+                text = "${stringResource(R.string.air_quality)} ${stringResource(R.string.aqi_text)}",
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -213,7 +210,7 @@ private fun Screen(
                 IconButton(onClick = { showAQIDialog = true }) {
                     Icon(
                         imageVector = Icons.Default.Warning,
-                        contentDescription = "Información AQI",
+                        contentDescription = stringResource(R.string.aqi_info_text),
                         tint = Color.Red,
                         modifier = Modifier.size(48.dp)
                     )
@@ -230,7 +227,7 @@ private fun Screen(
                         text = if (state.data.lastUpdated.isNotEmpty()) {
                             parseDate(state.data.lastUpdated)
                         } else {
-                            "No data"
+                            stringResource(R.string.noData_text)
                         },
                         fontSize = 16.sp
                     )
@@ -240,7 +237,7 @@ private fun Screen(
                 IconButton(onClick = { showFlaticonDialog = true }) {
                     Icon(
                         imageVector = Icons.Default.Info, // Puedes usar otro icono si quieres
-                        contentDescription = "Créditos de iconos",
+                        contentDescription = stringResource(R.string.icon_credits_title),
                         tint = Color.Gray,
                         modifier = Modifier.size(48.dp)
                     )
@@ -274,11 +271,11 @@ private fun Screen(
                     .heightIn(
                         min = 200.dp,
                         max = 300.dp
-                    ) // Establece un tamaño razonable para el grid
+                    )
             ) {
                 LazyVerticalGrid(
                     columns = GridCells.Adaptive(100.dp),
-                    modifier = Modifier.fillMaxSize(), // Asegura que ocupe el espacio del Box
+                    modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
@@ -449,23 +446,23 @@ fun AQIInfoDialog(showDialog: Boolean, onDismiss: () -> Unit) {
     if (showDialog) {
         AlertDialog(
             onDismissRequest = onDismiss,
-            title = { Text("Información sobre AQI") },
+            title = { Text(stringResource(R.string.aqi_info_text)) },
             text = {
                 Column {
-                    Text("El Índice de Calidad del Aire (AQI) sigue la escala de la EPA de EE.UU. Se basa en los valores máximos de los contaminantes y se representa con los siguientes colores:")
+                    Text(stringResource(R.string.aqi_colors_title))
                     Spacer(modifier = Modifier.height(8.dp))
-                    AQIColorIndicator(color = colorResource(id = R.color.defaultColor), label = "Sin datos")
-                    AQIColorIndicator(color = colorResource(id = R.color.goodColor), label = "0-50: Bueno")
-                    AQIColorIndicator(color = colorResource(id = R.color.moderateColor), label = "51-100: Moderado")
-                    AQIColorIndicator(color = colorResource(id = R.color.unhealthySensibleColor), label = "101-150: No saludable para grupos sensibles") // Naranja
-                    AQIColorIndicator(color = colorResource(id = R.color.unhealthyColor), label = "151-200: No saludable")
-                    AQIColorIndicator(color = colorResource(id = R.color.veryUnhealthyColor), label = "201-300: Muy no saludable") // Púrpura
-                    AQIColorIndicator(color = colorResource(id = R.color.hazardousColor), label = "300+: Peligroso") // Granate
+                    AQIColorIndicator(color = colorResource(id = R.color.defaultColor), label = stringResource(R.string.noData_text))
+                    AQIColorIndicator(color = colorResource(id = R.color.goodColor), label = stringResource(R.string.good_text))
+                    AQIColorIndicator(color = colorResource(id = R.color.moderateColor), label = stringResource(R.string.moderate_text))
+                    AQIColorIndicator(color = colorResource(id = R.color.unhealthySensibleColor), label = stringResource(R.string.unhealthy_sensible_text))
+                    AQIColorIndicator(color = colorResource(id = R.color.unhealthyColor), label = stringResource(R.string.unhealthy_text))
+                    AQIColorIndicator(color = colorResource(id = R.color.veryUnhealthyColor), label = stringResource(R.string.very_unhealthy_text))
+                    AQIColorIndicator(color = colorResource(id = R.color.hazardousColor), label = stringResource(R.string.hazardous_text))
                 }
             },
             confirmButton = {
                 TextButton(onClick = onDismiss) {
-                    Text("Entendido")
+                    Text(stringResource(R.string.ok_text))
                 }
             }
         )
@@ -491,17 +488,17 @@ fun FlaticonCreditsDialog(showDialog: Boolean, onDismiss: () -> Unit) {
     if (showDialog) {
         AlertDialog(
             onDismissRequest = onDismiss,
-            title = { Text("Créditos de Iconos") },
+            title = { Text(stringResource(R.string.icon_credits_title)) },
             text = {
                 Column {
-                    Text("Los iconos usados en esta aplicación son de Flaticon. Se debe mencionar su uso si se publica la aplicación.")
+                    Text(stringResource(R.string.flaticon_description))
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text("📌 Flaticon: www.flaticon.com")
+                    Text(stringResource(R.string.flaticon_authors))
                 }
             },
             confirmButton = {
                 TextButton(onClick = onDismiss) {
-                    Text("OK")
+                    Text(stringResource(R.string.ok_text))
                 }
             }
         )
@@ -513,19 +510,19 @@ fun GPSDisabledDialog(showDialog: Boolean, context: Context, message: String, on
     if (showDialog) {
         AlertDialog(
             onDismissRequest = onDismiss,
-            title = { Text("Aviso") },
+            title = { Text(stringResource(R.string.warning_title)) },
             text = { Text(message) },
             confirmButton = {
                 TextButton(onClick = {
                     val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
                     context.startActivity(intent)
                 }) {
-                    Text("Abrir Ajustes")
+                    Text(stringResource(R.string.open_settings_text))
                 }
             },
             dismissButton = {
                 TextButton(onClick = onDismiss) {
-                    Text("Cerrar")
+                    Text(stringResource(R.string.close_text))
                 }
             }
         )

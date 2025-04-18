@@ -2,6 +2,7 @@ package com.airquality.aircheck.ui.screens.historic
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.airquality.domain.datasource.AirParameterHistoricForecast
 import com.airquality.domain.datasource.HistoricForecastDataModel
 import com.airquality.usecases.GetHistoricAirQualityUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,7 +21,7 @@ class HistoricViewModel(
 
     data class UiState(
         val isLoading: Boolean = true,
-        val data: HistoricForecastDataModel = HistoricForecastDataModel(),
+        val data: HistoricForecastDataModel = HistoricForecastDataModel()
     )
 
     fun onUiReady() {
@@ -33,6 +34,29 @@ class HistoricViewModel(
                     )
                 }
             }
+        }
+    }
+
+    fun groupByDay(parameters: List<AirParameterHistoricForecast>): Map<String, List<AirParameterHistoricForecast>> {
+        return parameters.groupBy { it.time.substringBefore("T") }
+    }
+
+    fun averageByParameter(items: List<AirParameterHistoricForecast>): Map<String, Double> {
+        val grouped = mutableMapOf<String, MutableList<Double>>()
+
+        items.forEach { item ->
+            item.values.forEach { (key, value) ->
+                grouped.getOrPut(key) { mutableListOf() }.add(value)
+            }
+        }
+
+        return grouped.mapValues { (_, values) -> values.average() }
+    }
+
+    fun getParameterUnits(parameter: String): String {
+        return when (parameter) {
+            "CO" -> "mg/m³"
+            else -> "μg/m³"
         }
     }
 }

@@ -16,12 +16,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.airquality.aircheck.R
 import com.airquality.aircheck.ui.screens.forecast.ForecastScreen
 import com.airquality.aircheck.ui.screens.historic.HistoricScreen
 import com.airquality.aircheck.ui.screens.home.HomeScreen
@@ -60,9 +62,9 @@ fun Navigation(navController: NavHostController) {
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
-        BottomNavItem(Historic, Icons.Default.DateRange, "Historic"),
-        BottomNavItem(Home, Icons.Default.Home, "Home"),
-        BottomNavItem(Forecast, Icons.Default.Favorite, "Forecast")
+        BottomNavItem(Historic, Icons.Default.DateRange, stringResource(R.string.previous_days_text)),
+        BottomNavItem(Home, Icons.Default.Home, stringResource(R.string.home_text)),
+        BottomNavItem(Forecast, Icons.Default.Favorite, stringResource(R.string.forecast_text))
     )
 
     NavigationBar(

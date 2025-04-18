@@ -26,7 +26,7 @@ interface AirQualityApiService {
     suspend fun getForecastQuality(
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
-        @Query("forecast_days") forecastDays: Int = 7,
+        @Query("forecast_days") forecastDays: Int = 5,
         @Query("hourly") current: String = API_VALUES,
     ): AirHistoricForecastResponseDto
 }

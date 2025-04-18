@@ -20,31 +20,41 @@
     <string name="no_description"> Este gas incoloro e inodoro es un contaminante que se forma principalmente a partir de la combustión de combustibles fósiles. Aunque en pequeñas cantidades puede tener un papel en la regulación del flujo sanguíneo y la presión arterial, en concentraciones elevadas es tóxico y puede causar irritación en los ojos, la nariz y la garganta, así como problemas respiratorios. Además, el monóxido de nitrógeno puede reaccionar en la atmósfera para formar dióxido de nitrógeno (NO₂), un contaminante más dañino.</string>
     <string name="not_found_location">Ubicación no encontrada</string>
 
-    <string name="um003_title_with_unit">UM003</string>
-    <string name="pm1_title_with_unit" translatable="false">PM1</string>
-    <string name="pm10_title_with_unit" translatable="false">PM10</string>
-    <string name="relative_humidity_title_with_unit">Humedad relativa</string>
-    <string name="temperature_with_unit">Temperatura</string>
-    <string name="pm25_title_with_unit" translatable="false">PM25</string>
-    <string name="no2_title_with_unit">Dióxio de nitrógeno</string>
-    <string name="nox_title_with_unit">Óxidos de nitrógeno</string>
-    <string name="no_title_with_unit">Monóxido de nitrógeno</string>
-    <string name="o3_title_with_unit">Ozono</string>
-    <string name="co_title_with_unit">Monóxido de Carbono</string>
-    <string name="so2_title_with_unit">Dióxido de azufre</string>
-    <string name="gas_particles_information">-- Información de gases y partículas --</string>
-    <string name="see_historic_7_days">Ver historico de los últimos 7 días</string>
+    <!--Common-->
     <string name="parameters">Parámetros</string>
     <string name="air_quality">Calidad del aire</string>
     <string name="back">Atrás</string>
-    <string name="last_7_days">Histórico últimos 7 días</string>
     <string name="date">Fecha: %1$s</string>
-    <string name="parameter">"Parámetro: "</string>
-    <string name="average">", Promedio: "</string>
     <string name="open_settings">Abrir Ajustes</string>
     <string name="settings_text" translatable="false">Necesitas habilitar el permiso de ubicación en los ajustes para obtener datos de tu localización.</string>
     <string name="settings_title" translatable="false">Permiso de ubicación necesario</string>
     <string name="value_text">Valor:</string>
-    <string name="info_about">Información sobre</string>
+    <string name="mg_m_value" translatable="false">mg/m³</string>
+    <string name="micro_m_value" translatable="false">μg/m³</string>
+
+    <!--Home Screen-->
+    <string name="aqi_text" translatable="false">(AQI)</string>
+    <string name="aqi_info_text">Información sobre AQI</string>
+    <string name="noData_text">Sin datos</string>
+    <string name="icon_credits_title">Créditos de iconos</string>
+    <string name="aqi_colors_title">El Índice de Calidad del Aire (AQI) sigue la escala de la EPA de EE.UU. Se basa en los valores máximos de los contaminantes y se representa con los siguientes colores:</string>
+    <string name="good_text">0-50: Bueno</string>
+    <string name="moderate_text">51-100: Moderado</string>
+    <string name="unhealthy_sensible_text">101-150: No saludable para grupos sensibles</string>
+    <string name="unhealthy_text">151-200: No saludable</string>
+    <string name="very_unhealthy_text">201-300: Muy no saludable</string>
+    <string name="hazardous_text">300+: Peligroso</string>
+    <string name="ok_text">Aceptar</string>
+    <string name="warning_title">Aviso</string>
+    <string name="close_text">Cerrar</string>
+    <string name="open_settings_text">Abrir Ajustes</string>
+    <string name="give_permission_text">Necesitas dar permisos para usar la aplicación</string>
+    <string name="activate_gps_text">Para obtener la calidad del aire en tu ubicación, activa el GPS.</string>
+    <string name="previous_days_text">Historial</string>
+    <string name="aqi_average_text">AQI medio:</string>
+    <string name="forecast_text">Previsión</string>
+    <string name="flaticon_description">Los iconos utilizados en esta aplicación han sido diseñados por diversos autores y están disponibles en Flaticon (www.flaticon.com). Se utilizan con la debida atribución bajo licencia gratuita.</string>
+    <string name="flaticon_authors">Iconos diseñados por: Freepik, Smashicons y otros autores en Flaticon.</string>
+    <string name="home_text">Inicio</string>
 
 </resources>

@@ -43,19 +43,19 @@ class HomeViewModel(
         }
     }
 
-    fun onPermissionDenied() {
+    fun onPermissionDenied(context: Context) {
         _homeState.update {
             it.copy(
-                message = "Necesitas dar permisos para usar la aplicación",
+                message = context.getString(R.string.give_permission_text),
                 isPermissionDeniedVisible = true
             )
         }
     }
 
-    fun onGPSDisabled() {
+    fun onGPSDisabled(context: Context) {
         _homeState.update {
             it.copy(
-                message = "Para obtener la calidad del aire en tu ubicación, activa el GPS."
+                message = context.getString(R.string.activate_gps_text)
             )
         }
     }

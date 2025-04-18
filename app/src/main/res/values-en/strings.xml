@@ -21,25 +21,35 @@
     <string name="no_description"> This colorless and odorless gas is a pollutant primarily formed from the burning of fossil fuels. While in small amounts it can play a role in regulating blood flow and blood pressure, in high concentrations it is toxic and can cause irritation in the eyes, nose, and throat, as well as respiratory problems. Additionally, nitric oxide can react in the atmosphere to form nitrogen dioxide (NO₂), a more harmful pollutant.</string>
     <string name="not_found_location">Location not found</string>
 
-    <string name="um003_title_with_unit">UM003</string>
-    <string name="relative_humidity_title_with_unit">Relative Humidity</string>
-    <string name="temperature_with_unit">Temperature</string>
-    <string name="no2_title_with_unit">Nitrogen Dioxide</string>
-    <string name="nox_title_with_unit">Nitrogen Oxides</string>
-    <string name="no_title_with_unit">Nitric Oxide</string>
-    <string name="o3_title_with_unit">Ozone</string>
-    <string name="co_title_with_unit">Carbon Monoxide</string>
-    <string name="so2_title_with_unit">Sulfur Dioxide</string>
-    <string name="gas_particles_information">-- Gas and Particles Information --</string>
-    <string name="see_historic_7_days">View history of the last 7 days</string>
     <string name="parameters">Parameters</string>
     <string name="air_quality">Air Quality</string>
     <string name="back">Back</string>
-    <string name="last_7_days">Last 7 Days History</string>
     <string name="date">Date: %1$s</string>
-    <string name="parameter">Parameter: </string>
-    <string name="average">, Average: </string>
     <string name="open_settings">Abrir Ajustes</string>
     <string name="value_text">Value:</string>
-    <string name="info_about">Info about</string>
+
+    <!--Home Screen-->
+    <string name="aqi_info_text">About AQI Information</string>
+    <string name="noData_text">No data</string>
+    <string name="icon_credits_title">Icon Credits</string>
+    <string name="aqi_colors_title">The Air Quality Index (AQI) follows the U.S. EPA scale. It is based on the maximum pollutant values and is represented by the following colors:</string>
+    <string name="good_text">0-50: Good</string>
+    <string name="moderate_text">51-100: Moderate</string>
+    <string name="unhealthy_sensible_text">101-150: Unhealthy for sensitive groups</string>
+    <string name="unhealthy_text">151-200: Unhealthy</string>
+    <string name="very_unhealthy_text">201-300: Very unhealthy</string>
+    <string name="hazardous_text">300+: Hazardous</string>
+    <string name="ok_text">OK</string>
+    <string name="warning_title">Warning</string>
+    <string name="close_text">Close</string>
+    <string name="open_settings_text">Open Settings</string>
+    <string name="give_permission_text">You need to grant permissions to use the app</string>
+    <string name="activate_gps_text">To get air quality at your location, please enable GPS.</string>
+    <string name="previous_days_text">Previous days</string>
+    <string name="aqi_average_text">AQI average:</string>
+    <string name="forecast_text">Forecast</string>
+    <string name="flaticon_description">"The icons used in this app were designed by various authors and are available on Flaticon (www.flaticon.com). They are used under the free license with attribution. "</string>
+    <string name="flaticon_authors">"Icons designed by: "</string>
+    <string name="home_text">Home</string>
+
 </resources>

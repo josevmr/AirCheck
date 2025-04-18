@@ -16,7 +16,7 @@ class GetForecastAirQualityUseCase(
             val data = locationRepository.getForecastAirQuality().first()
             emit(data)
         } catch (e: Exception) {
-            //tratar el catch
+            e.printStackTrace()
         }
     }
 }
