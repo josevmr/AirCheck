@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AirCheck</string>
+    <string name="app_name" translatable="false">AirCheck</string>
 
     <!--Descriptions-->
     <string name="pm25_title">PM2.5 (Partículas en suspensión finas):</string>
