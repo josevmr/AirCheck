@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Calidad Aire</string>
+    <string name="app_name">AirCheck</string>
 
     <!--Descriptions-->
     <string name="pm25_title">PM2.5 (Fine Particulate Matter):</string>
