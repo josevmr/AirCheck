@@ -22,19 +22,21 @@ class LocationAirQualityRepository(
         emit(data)
     }
 
-    fun getHistoricAirQuality(): Flow<HistoricForecastDataModel> = flow{
-        val coordinates = locationRepository.findLastLocation()
-        val data = remoteDataSource.getHistoricAirQuality(
-            coordinates?.latitude ?: DEFAULT_LATITUDE,
-            coordinates?.longitude ?: DEFAULT_LONGITUDE)
-        emit(data)
+    fun getHistoricAirQuality(): Flow<HistoricForecastDataModel> = flow {
+        emit(fetchData(remoteDataSource::getHistoricAirQuality))
     }
 
-    fun getForecastAirQuality(): Flow<HistoricForecastDataModel> = flow{
+    fun getForecastAirQuality(): Flow<HistoricForecastDataModel> = flow {
+        emit(fetchData(remoteDataSource::getForecastAirQuality))
+    }
+
+    private suspend fun fetchData(
+        fetch: suspend (lat: Double, lon: Double) -> HistoricForecastDataModel
+    ): HistoricForecastDataModel {
         val coordinates = locationRepository.findLastLocation()
-        val data = remoteDataSource.getForecastAirQuality(
+        return fetch(
             coordinates?.latitude ?: DEFAULT_LATITUDE,
-            coordinates?.longitude ?: DEFAULT_LONGITUDE)
-        emit(data)
+            coordinates?.longitude ?: DEFAULT_LONGITUDE
+        )
     }
 }

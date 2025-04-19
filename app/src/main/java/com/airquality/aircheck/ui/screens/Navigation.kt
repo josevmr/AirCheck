@@ -6,8 +6,8 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -64,7 +64,7 @@ fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
         BottomNavItem(Historic, Icons.Default.DateRange, stringResource(R.string.previous_days_text)),
         BottomNavItem(Home, Icons.Default.Home, stringResource(R.string.home_text)),
-        BottomNavItem(Forecast, Icons.Default.Favorite, stringResource(R.string.forecast_text))
+        BottomNavItem(Forecast, Icons.Default.SkipNext , stringResource(R.string.forecast_text))
     )
 
     NavigationBar(

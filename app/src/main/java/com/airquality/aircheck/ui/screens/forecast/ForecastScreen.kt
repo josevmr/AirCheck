@@ -116,7 +116,7 @@ fun ForecastDayCard(
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-                border = BorderStroke(width = 2.dp, color = Color.Black)
+                border = BorderStroke(width = 1.dp, color = Color.Black)
             ) {
                 Column(modifier = Modifier.padding(12.dp)) {
                     Text(
@@ -134,7 +134,7 @@ fun ForecastDayCard(
                             val colorModel = QualityColorBuilders.getQualityColorModel(value)
 
                             Column(
-                                modifier = Modifier.width(52.dp),
+                                modifier = Modifier.width(60.dp),
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
                                 Text(
@@ -147,15 +147,17 @@ fun ForecastDayCard(
 
                                 Box(
                                     modifier = Modifier
-                                        .size(16.dp)
+                                        .size(24.dp)
                                         .clip(CircleShape)
                                         .background(colorResource(id = colorModel.imageColor))
                                 )
 
                                 Spacer(modifier = Modifier.height(4.dp))
 
+                                val formattedValue = String.format("%.2f", value)
+
                                 Text(
-                                    text = "${value.toInt()} ${vm.getParameterUnits(param)}",
+                                    text = "$formattedValue ${vm.getParameterUnits(param)}",
                                     fontSize = 10.sp,
                                     textAlign = TextAlign.Center
                                 )
