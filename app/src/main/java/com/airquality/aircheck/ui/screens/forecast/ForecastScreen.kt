@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -61,31 +63,37 @@ fun ForecastScreen(
             CircularProgressIndicator()
         }
     } else {
-        Surface(modifier = Modifier.fillMaxSize()) {
-            Column(
-                modifier = Modifier.padding(16.dp)
-            ) {
-                Text(
-                    text = "${stringResource(R.string.forecast_text)} - ${state.data.city}",
-                    style = MaterialTheme.typography.headlineSmall,
-                    modifier = Modifier
-                        .padding(bottom = 16.dp)
-                        .fillMaxWidth()
-                        .align(Alignment.CenterHorizontally)
-                        .padding(top = 32.dp)
-                )
 
-                LazyColumn(
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    contentPadding = PaddingValues(bottom = 116.dp)
+        BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+            val isCompact = maxWidth < 600.dp
+
+            Surface(modifier = Modifier.fillMaxSize()) {
+                Column(
+                    modifier = Modifier
+                        .padding(horizontal = if (isCompact) 16.dp else 32.dp)
+                        .widthIn(max = 600.dp)
+                        .padding(top = 32.dp)
                 ) {
-                    groupedDays
-                        .toSortedMap()
-                        .forEach { (day, items) ->
-                            item {
-                                ForecastDayCard(day = day, items = items, vm = vm)
+                    Text(
+                        text = "${stringResource(R.string.forecast_text)} - ${state.data.city}",
+                        style = MaterialTheme.typography.headlineSmall,
+                        modifier = Modifier
+                            .padding(bottom = 16.dp)
+                            .align(Alignment.CenterHorizontally)
+                    )
+
+                    LazyColumn(
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        contentPadding = PaddingValues(bottom = 116.dp)
+                    ) {
+                        groupedDays
+                            .toSortedMap()
+                            .forEach { (day, items) ->
+                                item {
+                                    ForecastDayCard(day = day, items = items, vm = vm)
+                                }
                             }
-                        }
+                    }
                 }
             }
         }
@@ -115,8 +123,7 @@ fun ForecastDayCard(
         parameters.forEach { (param, hourlyList) ->
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-                border = BorderStroke(width = 1.dp, color = Color.Black)
+                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
             ) {
                 Column(modifier = Modifier.padding(12.dp)) {
                     Text(

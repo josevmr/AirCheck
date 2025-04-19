@@ -13,6 +13,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,8 +24,10 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -107,42 +110,51 @@ fun HomeScreen(
         )
     }
 
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+    BoxWithConstraints(
+        modifier = Modifier.fillMaxSize()
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-                .padding(top = 32.dp)
+        val isCompact = maxWidth < 600.dp
+
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
         ) {
-            when {
-                state.isLoading -> {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        CircularProgressIndicator()
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = if (isCompact) 16.dp else 32.dp)
+                    .wrapContentWidth(Alignment.CenterHorizontally)
+                    .widthIn(max = 600.dp)
+                    .padding(top = 32.dp)
+            ) {
+                when {
+                    state.isLoading -> {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            CircularProgressIndicator()
+                        }
+                    }
+
+                    else -> {
+                        Screen(
+                            vm = vm,
+                            modifier = Modifier
+                                .fillMaxSize()
+                        )
                     }
                 }
-                else -> {
-                    Screen(
-                        vm = vm,
-                        modifier = Modifier
-                            .fillMaxSize()
+
+                if (state.isPermissionDeniedVisible) {
+                    PermissionDeniedCard(
+                        onOpenSettings = {
+                            vm.onSettingsButtonClicked()
+                            homeState.openAppSettings()
+                        },
+                        modifier = Modifier.align(Alignment.BottomCenter)
                     )
                 }
-            }
-
-            if (state.isPermissionDeniedVisible) {
-                PermissionDeniedCard(
-                    onOpenSettings = {
-                        vm.onSettingsButtonClicked()
-                        homeState.openAppSettings()
-                    },
-                    modifier = Modifier.align(Alignment.BottomCenter)
-                )
             }
         }
     }
