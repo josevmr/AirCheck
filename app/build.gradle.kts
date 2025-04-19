@@ -97,4 +97,7 @@ dependencies {
 
     //Location
     implementation(libs.play.services.location)
+
+    //Icons extended
+    implementation(libs.icons.extended)
 }

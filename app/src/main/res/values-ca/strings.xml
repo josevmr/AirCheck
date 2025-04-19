@@ -48,6 +48,10 @@
     <string name="aqi_average_text">AQI promig:</string>
     <string name="forecast_text">Previsió</string>
     <string name="flaticon_description">"Els icones utilitzats en aquesta aplicació han estat dissenyats per diversos autors i estan disponibles a Flaticon (www.flaticon.com). S'utilitzen amb l'atribució corresponent segons la llicència gratuïta. "</string>
-    <string name="flaticon_authors">Icones dissenyats per:</string>
+    <string name="flaticon_authors">Icones dissenyats per: Icon mania, muhammad atho\' i Upnow Graphic</string>
     <string name="home_text">Inici</string>
+
+    <!--Content descriptions-->
+    <string name="icon_state_description">Icona estat</string>
+
 </resources>

@@ -48,7 +48,10 @@
     <string name="aqi_average_text">AQI average:</string>
     <string name="forecast_text">Forecast</string>
     <string name="flaticon_description">"The icons used in this app were designed by various authors and are available on Flaticon (www.flaticon.com). They are used under the free license with attribution. "</string>
-    <string name="flaticon_authors">"Icons designed by: "</string>
+    <string name="flaticon_authors">"Icons designed by: Icon mania, muhammad atho\' y Upnow Graphic."</string>
     <string name="home_text">Home</string>
+
+    <!--Content descriptions-->
+    <string name="icon_state_description">Status Icon</string>
 
 </resources>

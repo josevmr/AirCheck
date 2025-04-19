@@ -31,8 +31,8 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Receipt
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -206,10 +206,9 @@ private fun Screen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Botón de Información sobre AQI
                 IconButton(onClick = { showAQIDialog = true }) {
                     Icon(
-                        imageVector = Icons.Default.Warning,
+                        imageVector = Icons.Outlined.Info,
                         contentDescription = stringResource(R.string.aqi_info_text),
                         tint = Color.Red,
                         modifier = Modifier.size(48.dp)
@@ -233,10 +232,9 @@ private fun Screen(
                     )
                 }
 
-                // Botón de Créditos (Flaticon)
                 IconButton(onClick = { showFlaticonDialog = true }) {
                     Icon(
-                        imageVector = Icons.Default.Info, // Puedes usar otro icono si quieres
+                        imageVector = Icons.Outlined.Receipt,
                         contentDescription = stringResource(R.string.icon_credits_title),
                         tint = Color.Gray,
                         modifier = Modifier.size(48.dp)
@@ -261,8 +259,6 @@ private fun Screen(
                     onDismiss = { showFlaticonDialog = false })
             }
         }
-
-        // PARAMETERS
 
         item {
             Box(
@@ -310,7 +306,7 @@ private fun ShowContent(image: Int, average: Double) {
 
         else -> Icon(
             painter = painterResource(id = image),
-            contentDescription = "icon",
+            contentDescription = stringResource(R.string.icon_state_description),
             modifier = Modifier
                 .size(80.dp),
             colorResource(R.color.black)
@@ -329,6 +325,7 @@ fun ParameterCard(
 
     val parameterValue = calculateAirParameterValue(parameter)
     val parameterColor = QualityColorBuilders.getQualityColorModel(parameterValue)
+    var showParameterDialog by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier
@@ -394,15 +391,13 @@ fun ParameterCard(
                 ) {
                     val parameterDescription =
                         vm.getParameterDescription(parameter.parameter, context)
-                    Text(
-                        text = parameterDescription.first,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
+
+                    ParameterDialog(
+                        showDialog = showParameterDialog,
+                        parameterDescription = parameterDescription,
+                        parameter = parameter,
+                        onDismiss = { showParameterDialog = false }
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = "${stringResource(R.string.value_text)} ${parameter.lastValue} ${parameter.units}")
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = parameterDescription.second, textAlign = TextAlign.Center)
                 }
             }
         }
@@ -480,6 +475,37 @@ fun AQIColorIndicator(color: Color, label: String) {
         }
         Spacer(modifier = Modifier.width(8.dp))
         Text(text = label, fontSize = 14.sp)
+    }
+}
+
+@Composable
+fun ParameterDialog(
+    showDialog: Boolean,
+    parameterDescription: Pair<String, String>,
+    parameter: AirParameter,
+    onDismiss: () -> Unit
+) {
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = onDismiss,
+            title = { Text(
+                text = parameterDescription.first,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold
+            ) },
+            text = {
+                Column {
+                    Text(text = "${stringResource(R.string.value_text)} ${parameter.lastValue} ${parameter.units}")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(text = parameterDescription.second, textAlign = TextAlign.Center)
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = onDismiss) {
+                    Text(stringResource(R.string.ok_text))
+                }
+            }
+        )
     }
 }
 
