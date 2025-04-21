@@ -81,7 +81,8 @@ fun HistoricScreen(
                         style = MaterialTheme.typography.headlineSmall,
                         modifier = Modifier
                             .padding(bottom = 16.dp)
-                            .align(Alignment.CenterHorizontally)
+                            .align(Alignment.CenterHorizontally),
+                        color = MaterialTheme.colorScheme.onBackground
                     )
 
                     LazyColumn(
@@ -117,7 +118,12 @@ fun DayCard(
 
     Card(
         modifier = Modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            contentColor = MaterialTheme.colorScheme.onSurface
+        ),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row(
@@ -167,7 +173,8 @@ fun DayCard(
                         Text(
                             text = "$param: ${"%.1f".format(value)} ${vm.getParameterUnits(param)}",
                             modifier = Modifier.padding(8.dp),
-                            fontSize = 12.sp
+                            fontSize = 12.sp,
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     }
                 }

@@ -26,7 +26,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -67,10 +66,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Popup
 import com.airquality.aircheck.R
 import com.airquality.aircheck.ui.screens.home.utils.PermissionRequestEffect
 import com.airquality.aircheck.ui.screens.home.utils.QualityColorBuilders
@@ -185,7 +182,8 @@ private fun Screen(
             Text(
                 text = "${stringResource(R.string.air_quality)} ${stringResource(R.string.aqi_text)}",
                 fontSize = 32.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onBackground
             )
 
             Spacer(Modifier.height(36.dp))
@@ -222,7 +220,7 @@ private fun Screen(
                     Icon(
                         imageVector = Icons.Outlined.Info,
                         contentDescription = stringResource(R.string.aqi_info_text),
-                        tint = Color.Red,
+                        tint = MaterialTheme.colorScheme.error,
                         modifier = Modifier.size(48.dp)
                     )
                 }
@@ -231,7 +229,8 @@ private fun Screen(
                     Text(
                         text = state.data.city,
                         fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
 
                     Text(
@@ -240,7 +239,8 @@ private fun Screen(
                         } else {
                             stringResource(R.string.noData_text)
                         },
-                        fontSize = 16.sp
+                        fontSize = 16.sp,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
                 }
 
@@ -248,7 +248,7 @@ private fun Screen(
                     Icon(
                         imageVector = Icons.Outlined.Receipt,
                         contentDescription = stringResource(R.string.icon_credits_title),
-                        tint = Color.Gray,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.size(48.dp)
                     )
                 }
@@ -257,7 +257,8 @@ private fun Screen(
 
             Text(
                 text = stringResource(R.string.parameters),
-                fontSize = 16.sp
+                fontSize = 16.sp,
+                color = MaterialTheme.colorScheme.onBackground
             )
             Spacer(Modifier.height(8.dp))
 
@@ -357,7 +358,11 @@ fun ParameterCard(
                 .wrapContentHeight(),
             shape = RoundedCornerShape(16.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-            border = BorderStroke(3.dp, colorResource(id = parameterColor.imageColor))
+            border = BorderStroke(3.dp, colorResource(id = parameterColor.imageColor)),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                contentColor = MaterialTheme.colorScheme.onSurface
+            )
         ) {
             Column(
                 modifier = Modifier
@@ -370,14 +375,17 @@ fun ParameterCard(
                 Text(
                     text = parameter.parameter,
                     fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
-                    text = parameter.lastValue.toString()
+                    text = parameter.lastValue.toString(),
+                    color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
                     text = parameter.units,
-                    fontSize = 12.sp
+                    fontSize = 12.sp,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             }
         }
@@ -401,6 +409,10 @@ fun PermissionDeniedCard(onOpenSettings: () -> Unit, modifier: Modifier) {
             .padding(16.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 8.dp
+        ),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            contentColor = MaterialTheme.colorScheme.onSurface
         )
     ) {
         Column(
