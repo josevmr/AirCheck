@@ -331,13 +331,12 @@ fun ParameterCard(
     parameter: AirParameter,
     vm: HomeViewModel
 ) {
-    var showPopup by remember { mutableStateOf(false) }
+    var showDialog by remember { mutableStateOf(false) }
     var offset by remember { mutableStateOf(Offset.Zero) }
     val context = LocalContext.current
 
     val parameterValue = calculateAirParameterValue(parameter)
     val parameterColor = QualityColorBuilders.getQualityColorModel(parameterValue)
-    var showParameterDialog by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier
@@ -346,7 +345,7 @@ fun ParameterCard(
                 detectTapGestures(
                     onTap = { tapOffset ->
                         offset = tapOffset
-                        showPopup = true
+                        showDialog = true
                     }
                 )
             }
@@ -374,7 +373,7 @@ fun ParameterCard(
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "${parameter.lastValue}"
+                    text = parameter.lastValue.toString()
                 )
                 Text(
                     text = parameter.units,
@@ -383,37 +382,15 @@ fun ParameterCard(
             }
         }
     }
+    val parameterDescription =
+        vm.getParameterDescription(parameter.parameter, context)
 
-    if (showPopup) {
-        Popup(
-            alignment = Alignment.TopStart,
-            offset = IntOffset(offset.x.toInt(), offset.y.toInt()),
-            onDismissRequest = { showPopup = false }
-        ) {
-            Card(
-                modifier = Modifier
-                    .wrapContentSize()
-                    .padding(8.dp),
-                shape = RoundedCornerShape(8.dp),
-                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-            ) {
-                Column(
-                    modifier = Modifier.padding(12.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    val parameterDescription =
-                        vm.getParameterDescription(parameter.parameter, context)
-
-                    ParameterDialog(
-                        showDialog = showParameterDialog,
-                        parameterDescription = parameterDescription,
-                        parameter = parameter,
-                        onDismiss = { showParameterDialog = false }
-                    )
-                }
-            }
-        }
-    }
+    ParameterDialog(
+        showDialog = showDialog,
+        parameterDescription = parameterDescription,
+        parameter = parameter,
+        onDismiss = { showDialog = false }
+    )
 }
 
 @Composable

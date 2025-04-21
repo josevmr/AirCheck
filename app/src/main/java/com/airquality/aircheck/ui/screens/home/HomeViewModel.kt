@@ -99,12 +99,12 @@ class HomeViewModel(
                 context.getString(R.string.pm25_description)
             )
 
-            "NO₂" -> Pair(
+            "NO2" -> Pair(
                 context.getString(R.string.no2_title),
                 context.getString(R.string.no2_description)
             )
 
-            "O₃" -> Pair(
+            "O3" -> Pair(
                 context.getString(R.string.ozone_title),
                 context.getString(R.string.ozone_description)
             )
@@ -114,7 +114,7 @@ class HomeViewModel(
                 context.getString(R.string.co_description)
             )
 
-            "SO₂" -> Pair(
+            "SO2" -> Pair(
                 context.getString(R.string.so2_title),
                 context.getString(R.string.so2_description)
             )
