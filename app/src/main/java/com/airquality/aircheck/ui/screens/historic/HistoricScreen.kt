@@ -130,11 +130,16 @@ fun DayCard(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column {
-                    Text(text = formattedDate(day), fontWeight = FontWeight.Bold)
+                    Text(
+                        text = formattedDate(day),
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
 
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    Text("${stringResource(R.string.aqi_average_text)} ${dailyAverage.toInt()}")
+                    Text(text = "${stringResource(R.string.aqi_average_text)} ${dailyAverage.toInt()}",
+                        color = MaterialTheme.colorScheme.onBackground)
                 }
                 Spacer(modifier = Modifier.weight(1f))
                 Box(
@@ -174,7 +179,7 @@ fun DayCard(
                             text = "$param: ${"%.1f".format(value)} ${vm.getParameterUnits(param)}",
                             modifier = Modifier.padding(8.dp),
                             fontSize = 12.sp,
-                            color = MaterialTheme.colorScheme.onBackground
+                            color = Color.Black
                         )
                     }
                 }
