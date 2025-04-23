@@ -18,16 +18,16 @@ import org.mockito.Mockito.mock
 import org.mockito.kotlin.whenever
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class GetHistoricAirQualityUseCaseTest {
+class GetForecastAirQualityUseCaseTest {
 
-    private lateinit var useCase: GetHistoricAirQualityUseCase
+    private lateinit var useCase: GetForecastAirQualityUseCase
     private val repository: LocationAirQualityRepository = mock()
     private val testDispatcher = StandardTestDispatcher()
 
     @Before
     fun setup() {
         Dispatchers.setMain(testDispatcher)
-        useCase = GetHistoricAirQualityUseCase(repository)
+        useCase = GetForecastAirQualityUseCase(repository)
     }
 
     @After
@@ -36,10 +36,10 @@ class GetHistoricAirQualityUseCaseTest {
     }
 
     @Test
-    fun `invoke should emit historic data from repository`() = runTest {
+    fun `invoke should emit forecast data from repository`() = runTest {
         // Arrange
-        val expected = HistoricForecastDataModel(city = "Madrid")
-        whenever(repository.getHistoricAirQuality()).thenReturn(flowOf(expected))
+        val expected = HistoricForecastDataModel(city = "Barcelona")
+        whenever(repository.getForecastAirQuality()).thenReturn(flowOf(expected))
 
         // Act & Assert
         useCase().test {

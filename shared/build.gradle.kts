@@ -15,4 +15,10 @@ kotlin {
 }
 dependencies {
     implementation(project(":domain"))
+
+    //Mockito, test coroutines, turbine
+    implementation(libs.mockito.kotlin)
+    implementation(libs.kotlin.coroutine.test)
+    implementation(libs.turbine)
+    testImplementation(libs.junit)
 }

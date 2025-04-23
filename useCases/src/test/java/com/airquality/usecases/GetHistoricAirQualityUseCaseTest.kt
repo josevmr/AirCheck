@@ -2,11 +2,14 @@ package com.airquality.usecases
 
 import app.cash.turbine.test
 import com.airquality.data.LocationAirQualityRepository
-import com.airquality.domain.HomeDataModel
+import com.airquality.domain.datasource.HistoricForecastDataModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.*
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -15,18 +18,16 @@ import org.mockito.Mockito.mock
 import org.mockito.kotlin.whenever
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class FetchAirQualityUseCaseTest {
+class GetHistoricAirQualityUseCaseTest {
 
-    private lateinit var useCase: FetchAirQualityUseCase
-
-    private val fakeRepository: LocationAirQualityRepository = mock()
-
+    private lateinit var useCase: GetHistoricAirQualityUseCase
+    private val repository: LocationAirQualityRepository = mock()
     private val testDispatcher = StandardTestDispatcher()
 
     @Before
     fun setup() {
         Dispatchers.setMain(testDispatcher)
-        useCase = FetchAirQualityUseCase(fakeRepository)
+        useCase = GetHistoricAirQualityUseCase(repository)
     }
 
     @After
@@ -35,10 +36,10 @@ class FetchAirQualityUseCaseTest {
     }
 
     @Test
-    fun `invoke should emit HomeDataModel from repository`() = runTest {
+    fun `invoke should emit historic data from repository`() = runTest {
         // Arrange
-        val expected = HomeDataModel(city = "Test City")
-        whenever(fakeRepository.getAirQuality()).thenReturn(flowOf(expected))
+        val expected = HistoricForecastDataModel(city = "Madrid")
+        whenever(repository.getHistoricAirQuality()).thenReturn(flowOf(expected))
 
         // Act & Assert
         useCase().test {
