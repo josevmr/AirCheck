@@ -13,6 +13,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,8 +24,9 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -64,10 +66,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Popup
 import com.airquality.aircheck.R
 import com.airquality.aircheck.ui.screens.home.utils.PermissionRequestEffect
 import com.airquality.aircheck.ui.screens.home.utils.QualityColorBuilders
@@ -107,42 +107,51 @@ fun HomeScreen(
         )
     }
 
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+    BoxWithConstraints(
+        modifier = Modifier.fillMaxSize()
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-                .padding(top = 32.dp)
+        val isCompact = maxWidth < 600.dp
+
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
         ) {
-            when {
-                state.isLoading -> {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        CircularProgressIndicator()
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = if (isCompact) 16.dp else 32.dp)
+                    .wrapContentWidth(Alignment.CenterHorizontally)
+                    .widthIn(max = 600.dp)
+                    .padding(top = 32.dp)
+            ) {
+                when {
+                    state.isLoading -> {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            CircularProgressIndicator()
+                        }
+                    }
+
+                    else -> {
+                        Screen(
+                            vm = vm,
+                            modifier = Modifier
+                                .fillMaxSize()
+                        )
                     }
                 }
-                else -> {
-                    Screen(
-                        vm = vm,
-                        modifier = Modifier
-                            .fillMaxSize()
+
+                if (state.isPermissionDeniedVisible) {
+                    PermissionDeniedCard(
+                        onOpenSettings = {
+                            vm.onSettingsButtonClicked()
+                            homeState.openAppSettings()
+                        },
+                        modifier = Modifier.align(Alignment.BottomCenter)
                     )
                 }
-            }
-
-            if (state.isPermissionDeniedVisible) {
-                PermissionDeniedCard(
-                    onOpenSettings = {
-                        vm.onSettingsButtonClicked()
-                        homeState.openAppSettings()
-                    },
-                    modifier = Modifier.align(Alignment.BottomCenter)
-                )
             }
         }
     }
@@ -173,7 +182,8 @@ private fun Screen(
             Text(
                 text = "${stringResource(R.string.air_quality)} ${stringResource(R.string.aqi_text)}",
                 fontSize = 32.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onBackground
             )
 
             Spacer(Modifier.height(36.dp))
@@ -210,7 +220,7 @@ private fun Screen(
                     Icon(
                         imageVector = Icons.Outlined.Info,
                         contentDescription = stringResource(R.string.aqi_info_text),
-                        tint = Color.Red,
+                        tint = MaterialTheme.colorScheme.error,
                         modifier = Modifier.size(48.dp)
                     )
                 }
@@ -219,7 +229,8 @@ private fun Screen(
                     Text(
                         text = state.data.city,
                         fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
 
                     Text(
@@ -228,7 +239,8 @@ private fun Screen(
                         } else {
                             stringResource(R.string.noData_text)
                         },
-                        fontSize = 16.sp
+                        fontSize = 16.sp,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
                 }
 
@@ -236,7 +248,7 @@ private fun Screen(
                     Icon(
                         imageVector = Icons.Outlined.Receipt,
                         contentDescription = stringResource(R.string.icon_credits_title),
-                        tint = Color.Gray,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.size(48.dp)
                     )
                 }
@@ -245,7 +257,8 @@ private fun Screen(
 
             Text(
                 text = stringResource(R.string.parameters),
-                fontSize = 16.sp
+                fontSize = 16.sp,
+                color = MaterialTheme.colorScheme.onBackground
             )
             Spacer(Modifier.height(8.dp))
 
@@ -319,13 +332,12 @@ fun ParameterCard(
     parameter: AirParameter,
     vm: HomeViewModel
 ) {
-    var showPopup by remember { mutableStateOf(false) }
+    var showDialog by remember { mutableStateOf(false) }
     var offset by remember { mutableStateOf(Offset.Zero) }
     val context = LocalContext.current
 
     val parameterValue = calculateAirParameterValue(parameter)
     val parameterColor = QualityColorBuilders.getQualityColorModel(parameterValue)
-    var showParameterDialog by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier
@@ -334,7 +346,7 @@ fun ParameterCard(
                 detectTapGestures(
                     onTap = { tapOffset ->
                         offset = tapOffset
-                        showPopup = true
+                        showDialog = true
                     }
                 )
             }
@@ -346,7 +358,11 @@ fun ParameterCard(
                 .wrapContentHeight(),
             shape = RoundedCornerShape(16.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-            border = BorderStroke(3.dp, colorResource(id = parameterColor.imageColor))
+            border = BorderStroke(3.dp, colorResource(id = parameterColor.imageColor)),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                contentColor = MaterialTheme.colorScheme.onSurface
+            )
         ) {
             Column(
                 modifier = Modifier
@@ -359,49 +375,30 @@ fun ParameterCard(
                 Text(
                     text = parameter.parameter,
                     fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
-                    text = "${parameter.lastValue}"
+                    text = parameter.lastValue.toString(),
+                    color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
                     text = parameter.units,
-                    fontSize = 12.sp
+                    fontSize = 12.sp,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             }
         }
     }
+    val parameterDescription =
+        vm.getParameterDescription(parameter.parameter, context)
 
-    if (showPopup) {
-        Popup(
-            alignment = Alignment.TopStart,
-            offset = IntOffset(offset.x.toInt(), offset.y.toInt()),
-            onDismissRequest = { showPopup = false }
-        ) {
-            Card(
-                modifier = Modifier
-                    .wrapContentSize()
-                    .padding(8.dp),
-                shape = RoundedCornerShape(8.dp),
-                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-            ) {
-                Column(
-                    modifier = Modifier.padding(12.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    val parameterDescription =
-                        vm.getParameterDescription(parameter.parameter, context)
-
-                    ParameterDialog(
-                        showDialog = showParameterDialog,
-                        parameterDescription = parameterDescription,
-                        parameter = parameter,
-                        onDismiss = { showParameterDialog = false }
-                    )
-                }
-            }
-        }
-    }
+    ParameterDialog(
+        showDialog = showDialog,
+        parameterDescription = parameterDescription,
+        parameter = parameter,
+        onDismiss = { showDialog = false }
+    )
 }
 
 @Composable
@@ -412,6 +409,10 @@ fun PermissionDeniedCard(onOpenSettings: () -> Unit, modifier: Modifier) {
             .padding(16.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 8.dp
+        ),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            contentColor = MaterialTheme.colorScheme.onSurface
         )
     ) {
         Column(

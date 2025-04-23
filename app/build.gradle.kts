@@ -100,4 +100,9 @@ dependencies {
 
     //Icons extended
     implementation(libs.icons.extended)
+
+    //Mockito, test coroutines, turbine
+    implementation(libs.mockito.kotlin)
+    implementation(libs.kotlin.coroutine.test)
+    implementation(libs.turbine)
 }

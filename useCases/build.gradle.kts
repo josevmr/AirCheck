@@ -26,4 +26,10 @@ dependencies {
     //Koin ksp
     implementation(libs.koin.annotations)
     ksp(libs.koin.compiler)
+
+    //Mockito, test coroutines, turbine
+    implementation(libs.mockito.kotlin)
+    implementation(libs.kotlin.coroutine.test)
+    implementation(libs.turbine)
+    testImplementation(libs.junit)
 }

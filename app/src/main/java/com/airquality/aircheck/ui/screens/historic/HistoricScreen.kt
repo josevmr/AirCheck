@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
@@ -64,31 +66,36 @@ fun HistoricScreen(
             CircularProgressIndicator()
         }
     } else {
-        Surface(modifier = Modifier.fillMaxSize()) {
-            Column(
-                modifier = Modifier.
-                padding(16.dp)
-            ) {
-                Text(
-                    text = "${stringResource(R.string.previous_days_text)} - ${state.data.city}",
-                    style = MaterialTheme.typography.headlineSmall,
-                    modifier = Modifier
-                        .padding(bottom = 16.dp)
-                        .fillMaxWidth()
-                        .align(Alignment.CenterHorizontally)
-                        .padding(top = 32.dp)
-                )
+        BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+            val isCompact = maxWidth < 600.dp
 
-                LazyColumn(
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    contentPadding = PaddingValues(bottom = 116.dp)
+            Surface(modifier = Modifier.fillMaxSize()) {
+                Column(
+                    modifier = Modifier
+                        .padding(horizontal = if (isCompact) 16.dp else 32.dp)
+                        .widthIn(max = 600.dp)
+                        .padding(top = 32.dp)
                 ) {
-                    groupedDays
-                        .toSortedMap(compareByDescending { it })
-                        .forEach { (day, values) ->
-                        item {
-                            DayCard(day = day, items = values, vm = vm)
-                        }
+                    Text(
+                        text = "${stringResource(R.string.previous_days_text)} - ${state.data.city}",
+                        style = MaterialTheme.typography.headlineSmall,
+                        modifier = Modifier
+                            .padding(bottom = 16.dp)
+                            .align(Alignment.CenterHorizontally),
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+
+                    LazyColumn(
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        contentPadding = PaddingValues(bottom = 116.dp)
+                    ) {
+                        groupedDays
+                            .toSortedMap(compareByDescending { it })
+                            .forEach { (day, values) ->
+                                item {
+                                    DayCard(day = day, items = values, vm = vm)
+                                }
+                            }
                     }
                 }
             }
@@ -111,19 +118,28 @@ fun DayCard(
 
     Card(
         modifier = Modifier.fillMaxWidth(),
-        border = BorderStroke(width = 1.dp, color = Color.Black),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            contentColor = MaterialTheme.colorScheme.onSurface
+        ),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column {
-                    Text(text = formattedDate(day), fontWeight = FontWeight.Bold)
+                    Text(
+                        text = formattedDate(day),
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
 
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    Text("${stringResource(R.string.aqi_average_text)} ${dailyAverage.toInt()}")
+                    Text(text = "${stringResource(R.string.aqi_average_text)} ${dailyAverage.toInt()}",
+                        color = MaterialTheme.colorScheme.onBackground)
                 }
                 Spacer(modifier = Modifier.weight(1f))
                 Box(
@@ -162,7 +178,8 @@ fun DayCard(
                         Text(
                             text = "$param: ${"%.1f".format(value)} ${vm.getParameterUnits(param)}",
                             modifier = Modifier.padding(8.dp),
-                            fontSize = 12.sp
+                            fontSize = 12.sp,
+                            color = Color.Black
                         )
                     }
                 }
