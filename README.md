@@ -41,10 +41,11 @@ AirCheck es una aplicación Android minimalista que muestra la calidad del aire 
 
 This project uses a layered architecture for better scalability and testability:
 
-- `app` → UI layer (Jetpack Compose)
-- `domain` → Use cases and models
-- `data` → Repositories and data sources
+- `app` → UI layer (Jetpack Compose) and Android Framework
+- `domain` → Models and DataSources Interfaces
+- `data` → Repositories
 - `shared` → Utility classes and constants
+- `useCases` → Use cases
 
 ---
 
