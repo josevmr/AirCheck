@@ -1,61 +1,67 @@
 # 🌬️ AirCheck
 
-AirCheck is a simple, educational Android application that displays air quality data based on your location. Built with **Jetpack Compose**, **Clean Architecture**, and **Koin**, this app is designed to showcase modern Android development practices.
+AirCheck is a minimalist Android app that shows air quality in your location using data from [Open-Meteo](https://open-meteo.com/). It was built with Jetpack Compose and follows Clean Architecture principles, designed as my first app to showcase Android development skills.
 
-## 📱 Features
-
-- 📍 Detects your location (requires permission)
-- 🌫️ Displays air quality index (AQI) and parameters
-- 📆 Forecast and historic data
-- 🎨 Dynamic theming (supports Material You)
-- 🦮 Accessibility-aware design
-
-## 📡 API Used
-
-- [Open-Meteo Air Quality API](https://open-meteo.com/): Free and open air quality forecasting data
-
-## ⚙️ Tech Stack
-
-- 🧱 **Jetpack Compose**: UI toolkit
-- 🧪 **Kotlin Coroutines & Flow**: Async & reactive programming
-- 🔗 **Koin**: Dependency injection
-- 🧼 **Clean Architecture**: Separation of concerns
-- 🧪 **Unit Tests**: Built using `turbine`, `mockito-kotlin`, and `kotlinx-coroutines-test`
-
-## 🚀 How to Build
-
-1. Clone the repository
-2. Open in Android Studio
-3. Run on an emulator or device (Android 12+ recommended for dynamic theming)
+AirCheck es una aplicación Android minimalista que muestra la calidad del aire en tu ubicación utilizando datos de [Open-Meteo](https://open-meteo.com/). Está desarrollada con Jetpack Compose y basada en Clean Architecture, creada como mi primera app para mostrar mis habilidades como desarrollador Android.
 
 ---
 
-# 🌬️ AirCheck (Español)
+## ✨ Features 
 
-AirCheck es una aplicación Android educativa y sencilla que muestra los datos de calidad del aire según tu ubicación. Construida con **Jetpack Compose**, **Clean Architecture** y **Koin**, está pensada para demostrar buenas prácticas en desarrollo Android moderno.
+- 📍 Real-time location-based air quality data  
+- 🕒 Historic and forecast views  
+- 🌡️ Air quality index with dynamic colors and descriptions  
+- 📊 Parameter breakdown (PM2.5, PM10, O₃, NO₂, CO, SO₂)  
+- 🧩 Material You + Dynamic Color support  
+- 📵 Offline fallback with default location  
+- 🌙 Light/Dark theme support  
 
-## 📱 Funcionalidades
+---
 
-- 📍 Detecta tu ubicación (requiere permisos)
-- 🌫️ Muestra el índice de calidad del aire (AQI) y sus parámetros
-- 📆 Datos históricos y de predicción
-- 🎨 Soporte para temas dinámicos (Material You)
-- 🦮 Diseño accesible
+## 📸 Screenshots
 
-## 📡 API Utilizada
+| Home | Historic | Forecast |
+|------|----------|----------|
+| ![Home](screenshots/screenshot_home.jpg) | ![Historic](screenshots/screenshot_historic.jpg) | ![Forecast](screenshots/screenshot_forecast.jpg) |
 
-- [Open-Meteo Air Quality API](https://open-meteo.com/): Datos abiertos y gratuitos sobre calidad del aire
+---
 
-## ⚙️ Stack Tecnológico
+## 🛠️ Tech Stack
 
-- 🧱 **Jetpack Compose**
-- 🧪 **Kotlin Coroutines & Flow**
-- 🔗 **Koin**
-- 🧼 **Arquitectura Limpia**
-- 🧪 **Tests Unitarios** con `turbine`, `mockito-kotlin` y `coroutines-test`
+- Kotlin + Jetpack Compose
+- MVVM + Clean Architecture
+- Koin for DI
+- Coroutine Flows
+- Material 3 + Dynamic Colors
+- Open-Meteo API
 
-## 🚀 Cómo compilar
+---
 
-1. Clona este repositorio
-2. Ábrelo en Android Studio
-3. Ejecuta en un emulador o dispositivo (recomendado Android 12+)
+## 📂 Architecture
+
+This project uses a layered architecture for better scalability and testability:
+
+- `app` → UI layer (Jetpack Compose)
+- `domain` → Use cases and models
+- `data` → Repositories and data sources
+- `shared` → Utility classes and constants
+
+---
+
+## 📄 License & Credits
+
+- All data provided by [Open-Meteo](https://open-meteo.com/)
+- Icons from [Pixabay](https://pixabay.com) with proper attribution in-app
+- This project is open-source for learning and portfolio purposes  
+  Licensed under [MIT License](LICENSE)
+
+---
+
+## 🚀 Author
+
+Created with ❤️ by Jose Vicente Mirabel Rodrigo 
+Feel free to connect via [LinkedIn](www.linkedin.com/in/josevmirabel) or visit my [GitHub profile]([https://github.com/josevmr))
+
+---
+
+
