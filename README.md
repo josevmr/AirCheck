@@ -20,9 +20,9 @@ AirCheck es una aplicación Android minimalista que muestra la calidad del aire 
 
 ## 📸 Screenshots
 
-| Home | Historic | Forecast |
+| Home | Home (Dark) | Forecast |
 |------|----------|----------|
-| ![Home](screenshots/screenshot_home.jpg) | ![Historic](screenshots/screenshot_historic.jpg) | ![Forecast](screenshots/screenshot_forecast.jpg) |
+| ![Home](screenshots/light_home.jpg) | ![Home (Dark)](screenshots/dark_home.jpg) | ![Forecast](screenshots/light_forecast.jpg) |
 
 ---
 
