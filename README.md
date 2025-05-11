@@ -60,7 +60,7 @@ This project uses a layered architecture for better scalability and testability:
 ## 🚀 Author
 
 Created with ❤️ by Jose Vicente Mirabel Rodrigo 
-Feel free to connect via [LinkedIn](www.linkedin.com/in/josevmirabel) or visit my [GitHub profile]([https://github.com/josevmr))
+Feel free to connect via [LinkedIn](www.linkedin.com/in/josevmirabel) or visit my [GitHub profile](https://github.com/josevmr))
 
 ---
 
