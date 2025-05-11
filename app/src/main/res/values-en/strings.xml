@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Descriptions-->
+    <string name="pm25_title">PM2.5 (Fine Particulate Matter):</string>
+    <string name="pm25_description"> PM2.5 particles are small solid or liquid particles with a diameter of 2.5 microns or less. These particles are small enough to penetrate deeply into the lungs and can have serious health effects, especially for people with respiratory problems.</string>
+    <string name="pm10_title">PM10 (Particulate Matter):</string>
+    <string name="pm10_description"> Similar to PM2.5 but with a size of up to 10 microns. Although they are not as small as PM2.5, they can still cause respiratory issues when inhaled.</string>
+    <string name="ozone_title">O₃ (Tropospheric Ozone):</string>
+    <string name="ozone_description"> Tropospheric ozone is a pollutant formed when nitrogen oxides (NOₓ) and volatile organic compounds (VOCs) react in the presence of sunlight. It can cause respiratory problems and affect vegetation.</string>
+    <string name="no2_title">NO₂ (Nitrogen Dioxide):</string>
+    <string name="no2_description"> It is a toxic gas that can cause irritation in the lungs. It is primarily formed from the burning of fossil fuels and is a precursor to tropospheric ozone.</string>
+    <string name="so2_title">SO₂ (Sulfur Dioxide):</string>
+    <string name="so2_description"> This irritating gas can affect the respiratory system and contribute to the formation of acid rain. It is especially harmful to people with lung diseases.</string>
+    <string name="co_title">CO (Carbon Monoxide):</string>
+    <string name="co_description"> An odorless and colorless gas that can be dangerous at high concentrations because it prevents the body from transporting oxygen properly. It can cause dizziness, fatigue, and in extreme cases, death.</string>
+    <string name="bc_title">BC (Black Carbon):</string>
+    <string name="bc_description"> It is a fine particulate pollutant produced by the incomplete combustion of fossil fuels and biomass. It contributes to climate change by absorbing sunlight and can affect respiratory health.</string>
+    <string name="no_title">NO (Nitric Oxide):</string>
+    <string name="no_description"> This colorless and odorless gas is a pollutant primarily formed from the burning of fossil fuels. While in small amounts it can play a role in regulating blood flow and blood pressure, in high concentrations it is toxic and can cause irritation in the eyes, nose, and throat, as well as respiratory problems. Additionally, nitric oxide can react in the atmosphere to form nitrogen dioxide (NO₂), a more harmful pollutant.</string>
+    <string name="not_found_location">Location not found</string>
+
+    <string name="parameters">Parameters</string>
+    <string name="air_quality">Air Quality</string>
+    <string name="back">Back</string>
+    <string name="date">Date: %1$s</string>
+    <string name="open_settings">Abrir Ajustes</string>
+    <string name="value_text">Value:</string>
+
+    <!--Home Screen-->
+    <string name="aqi_info_text">About AQI Information</string>
+    <string name="noData_text">No data</string>
+    <string name="icon_credits_title">Icon Credits</string>
+    <string name="aqi_colors_title">The Air Quality Index (AQI) follows the U.S. EPA scale. It is based on the maximum pollutant values and is represented by the following colors:</string>
+    <string name="good_text">0–50: Good</string>
+    <string name="moderate_text">51–100: Moderate</string>
+    <string name="unhealthy_sensible_text">101–150: Unhealthy for sensitive groups</string>
+    <string name="unhealthy_text">151–200: Unhealthy</string>
+    <string name="very_unhealthy_text">201–300: Very unhealthy</string>
+    <string name="hazardous_text">300+: Hazardous</string>
+    <string name="ok_text">OK</string>
+    <string name="warning_title">Warning</string>
+    <string name="close_text">Close</string>
+    <string name="open_settings_text">Open Settings</string>
+    <string name="give_permission_text">You need to grant permissions to use the app</string>
+    <string name="activate_gps_text">To get air quality at your location, please enable GPS.</string>
+    <string name="previous_days_text">Previous days</string>
+    <string name="aqi_average_text">AQI average:</string>
+    <string name="forecast_text">Forecast</string>
+    <string name="flaticon_description">"The icons used in this app were designed by various authors and are available on Flaticon (www.flaticon.com). They are used under the free license with attribution. "</string>
+    <string name="flaticon_authors">"Icons designed by: Icon mania, muhammad atho\' y Upnow Graphic."</string>
+    <string name="home_text">Home</string>
+
+    <!--Content descriptions-->
+    <string name="icon_state_description">Status Icon</string>
+
+</resources>

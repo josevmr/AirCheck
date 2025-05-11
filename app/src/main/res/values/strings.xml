@@ -1,3 +1,64 @@
 <resources>
-    <string name="app_name">AirCheck</string>
+    <string name="app_name" translatable="false">AirCheck</string>
+
+    <!--Descriptions-->
+    <string name="pm25_title">PM2.5 (Partículas en suspensión finas):</string>
+    <string name="pm25_description"> Las partículas PM2.5 son pequeñas partículas sólidas o líquidas de 2.5 micrones o menos de diámetro. Estas partículas son lo suficientemente pequeñas como para penetrar profundamente en los pulmones y pueden tener efectos graves en la salud, especialmente para personas con problemas respiratorios.</string>
+    <string name="pm10_title">PM10 (Partículas en suspensión):</string>
+    <string name="pm10_description"> Similar a las PM2.5, pero con un tamaño de hasta 10 micrones. Aunque no son tan pequeñas como las PM2.5, también pueden causar problemas respiratorios al ser inhaladas.</string>
+    <string name="ozone_title">O₃ (Ozono troposférico):</string>
+    <string name="ozone_description"> El ozono troposférico es un contaminante formado cuando los óxidos de nitrógeno (NOₓ) y los compuestos orgánicos volátiles (COV) reaccionan en presencia de la luz solar. Puede causar problemas respiratorios y afectar la vegetación.</string>
+    <string name="no2_title">NO₂ (Dióxido de nitrógeno):</string>
+    <string name="no2_description"> Es un gas tóxico que puede causar irritación en los pulmones. Se forma principalmente a partir de la quema de combustibles fósiles y es un precursor del ozono troposférico.</string>
+    <string name="so2_title">SO₂ (Dióxido de azufre):</string>
+    <string name="so2_description"> Este gas irritante puede afectar el sistema respiratorio y contribuir a la formación de lluvia ácida. Es especialmente dañino para personas con enfermedades pulmonares.</string>
+    <string name="co_title">CO (Monóxido de carbono):</string>
+    <string name="co_description"> Un gas inodoro e incoloro que puede ser peligroso en concentraciones altas porque impide que el cuerpo transporte oxígeno adecuadamente. Puede provocar mareos, fatiga y, en casos extremos, la muerte.</string>
+    <string name="bc_title">BC (Black Carbon o Carbono negro):</string>
+    <string name="bc_description"> Es un contaminante de partículas finas producto de la combustión incompleta de combustibles fósiles y biomasa. Contribuye al cambio climático al absorber la luz solar y puede afectar la salud respiratoria.</string>
+    <string name="no_title">NO (Monóxido de nitrógeno):</string>
+    <string name="no_description"> Este gas incoloro e inodoro es un contaminante que se forma principalmente a partir de la combustión de combustibles fósiles. Aunque en pequeñas cantidades puede tener un papel en la regulación del flujo sanguíneo y la presión arterial, en concentraciones elevadas es tóxico y puede causar irritación en los ojos, la nariz y la garganta, así como problemas respiratorios. Además, el monóxido de nitrógeno puede reaccionar en la atmósfera para formar dióxido de nitrógeno (NO₂), un contaminante más dañino.</string>
+    <string name="not_found_location">Ubicación no encontrada</string>
+
+    <!--Common-->
+    <string name="parameters">Parámetros</string>
+    <string name="air_quality">Calidad del aire</string>
+    <string name="back">Atrás</string>
+    <string name="date">Fecha: %1$s</string>
+    <string name="open_settings">Abrir Ajustes</string>
+    <string name="settings_text" translatable="false">Necesitas habilitar el permiso de ubicación en los ajustes para obtener datos de tu localización.</string>
+    <string name="settings_title" translatable="false">Permiso de ubicación necesario</string>
+    <string name="value_text">Valor:</string>
+    <string name="mg_m_value" translatable="false">mg/m³</string>
+    <string name="micro_m_value" translatable="false">μg/m³</string>
+
+    <!--Home Screen-->
+    <string name="aqi_text" translatable="false">(AQI)</string>
+    <string name="aqi_info_text">Información sobre AQI</string>
+    <string name="noData_text">Sin datos</string>
+    <string name="icon_credits_title">Créditos de iconos</string>
+    <string name="aqi_colors_title">El Índice de Calidad del Aire (AQI) sigue la escala de la EPA de EE.UU. Se basa en los valores máximos de los contaminantes y se representa con los siguientes colores:</string>
+    <string name="good_text">0–50: Bueno</string>
+    <string name="moderate_text">51–100: Moderado</string>
+    <string name="unhealthy_sensible_text">101–150: No saludable para grupos sensibles</string>
+    <string name="unhealthy_text">151–200: No saludable</string>
+    <string name="very_unhealthy_text">201–300: Muy no saludable</string>
+    <string name="hazardous_text">300+: Peligroso</string>
+    <string name="ok_text">Aceptar</string>
+    <string name="warning_title">Aviso</string>
+    <string name="close_text">Cerrar</string>
+    <string name="open_settings_text">Abrir Ajustes</string>
+    <string name="give_permission_text">Necesitas dar permisos para usar la aplicación</string>
+    <string name="activate_gps_text">Para obtener la calidad del aire en tu ubicación, activa el GPS.</string>
+    <string name="previous_days_text">Historial</string>
+    <string name="aqi_average_text">AQI medio:</string>
+    <string name="forecast_text">Previsión</string>
+    <string name="flaticon_description">Los iconos utilizados en esta aplicación han sido diseñados por diversos autores y están disponibles en Flaticon (www.flaticon.com). Se utilizan con la debida atribución bajo licencia gratuita.</string>
+    <string name="flaticon_authors">Iconos diseñados por: Icon mania, muhammad atho\' y Upnow Graphic.</string>
+    <string name="home_text">Inicio</string>
+
+
+    <!--Content descriptions-->
+    <string name="icon_state_description">Icono estado</string>
+
 </resources>

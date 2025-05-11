@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Descriptions-->
+    <string name="pm25_title">PM2.5 (Partícules fines):</string>
+    <string name="pm25_description"> Les partícules PM2.5 són partícules sòlides o líquides amb un diàmetre de 2.5 micres o menys. Aquestes partícules són prou petites per penetrar profundament als pulmons i poden tenir efectes greus sobre la salut, especialment per a persones amb problemes respiratoris.</string>
+    <string name="pm10_title">PM10 (Partícules en suspensió):</string>
+    <string name="pm10_description"> Similar a PM2.5 però amb una mida de fins a 10 micres. Encara que no són tan petites com les PM2.5, poden causar problemes respiratoris quan s’inhalen.</string>
+    <string name="ozone_title">O₃ (Ozò troposfèric):</string>
+    <string name="ozone_description"> L’ozó troposfèric és un contaminant format quan els òxids de nitrogen (NOₓ) i els compostos orgànics volàtils (COV) reaccionen en presència de llum solar. Pot provocar problemes respiratoris i afectar la vegetació.</string>
+    <string name="no2_title">NO₂ (Diòxid de nitrogen):</string>
+    <string name="no2_description"> És un gas tòxic que pot causar irritació als pulmons. Es forma principalment de la combustió de combustibles fòssils i és un precursor de l’ozó troposfèric.</string>
+    <string name="so2_title">SO₂ (Diòxid de sofre):</string>
+    <string name="so2_description"> Aquest gas irritant pot afectar el sistema respiratori i contribuir a la formació de pluja àcida. És especialment perjudicial per a persones amb malalties pulmonars.</string>
+    <string name="co_title">CO (Monòxid de carboni):</string>
+    <string name="co_description"> Un gas inodor i incolor que pot ser perillós en concentracions elevades perquè impedeix que el cos transporti l’oxigen correctament. Pot causar marejos, fatiga i, en casos extrems, la mort.</string>
+    <string name="bc_title">BC (Carboni negre):</string>
+    <string name="bc_description"> És un contaminant en forma de partícules fines produït per la combustió incompleta de combustibles fòssils i biomassa. Contribueix al canvi climàtic absorbint la llum solar i pot afectar la salut respiratòria.</string>
+    <string name="no_title">NO (Òxid nítric):</string>
+    <string name="no_description"> Aquest gas incolor i inodor és un contaminant que es forma principalment a partir de la combustió de combustibles fòssils. Tot i que en petites quantitats pot jugar un paper en la regulació del flux sanguini i la pressió arterial, en concentracions altes és tòxic i pot causar irritació als ulls, nas i gola, així com problemes respiratoris. A més, pot reaccionar a l’atmosfera per formar diòxid de nitrogen (NO₂), un contaminant més nociu.</string>
+    <string name="not_found_location">Ubicació no trobada</string>
+
+    <string name="parameters">Paràmetres</string>
+    <string name="air_quality">Qualitat de l\'aire</string>
+    <string name="back">Enrere</string>
+    <string name="date">Data: %1$s</string>
+    <string name="open_settings">Obrir configuració</string>
+    <string name="value_text">Valor:</string>
+
+    <!--Home Screen-->
+    <string name="aqi_info_text">Informació sobre l’AQI</string>
+    <string name="noData_text">Sense dades</string>
+    <string name="icon_credits_title">Crèdits dels icones</string>
+    <string name="aqi_colors_title">L’Índex de Qualitat de l’Aire (AQI) segueix l’escala de l’EPA dels EUA. Es basa en els valors màxims dels contaminants i es representa amb els següents colors:</string>
+    <string name="good_text">0–50: Bo</string>
+    <string name="moderate_text">51–100: Moderat</string>
+    <string name="unhealthy_sensible_text">101–150: No saludable per a grups sensibles</string>
+    <string name="unhealthy_text">151–200: No saludable</string>
+    <string name="very_unhealthy_text">201–300: Molt no saludable</string>
+    <string name="hazardous_text">300+: Perillós</string>
+    <string name="ok_text">D’acord</string>
+    <string name="warning_title">Avís</string>
+    <string name="close_text">Tancar</string>
+    <string name="open_settings_text">Obrir configuració</string>
+    <string name="give_permission_text">Has d’atorgar permisos per utilitzar l’aplicació</string>
+    <string name="activate_gps_text">Per obtenir la qualitat de l’aire a la teva ubicació, activa el GPS.</string>
+    <string name="previous_days_text">Historial</string>
+    <string name="aqi_average_text">AQI promig:</string>
+    <string name="forecast_text">Previsió</string>
+    <string name="flaticon_description">"Els icones utilitzats en aquesta aplicació han estat dissenyats per diversos autors i estan disponibles a Flaticon (www.flaticon.com). S'utilitzen amb l'atribució corresponent segons la llicència gratuïta. "</string>
+    <string name="flaticon_authors">Icones dissenyats per: Icon mania, muhammad atho\' i Upnow Graphic</string>
+    <string name="home_text">Inici</string>
+
+    <!--Content descriptions-->
+    <string name="icon_state_description">Icona estat</string>
+
+</resources>

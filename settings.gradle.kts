@@ -21,4 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "AirCheck"
 include(":app")
- 
+include(":domain")
+include(":useCases")
+include(":shared")
+include(":data")
