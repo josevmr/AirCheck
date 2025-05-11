@@ -13,13 +13,15 @@ import androidx.compose.ui.platform.LocalContext
 private val DarkColorScheme = darkColorScheme(
     primary = primaryDark,
     secondary = secondaryDark,
-    tertiary = onTertiaryDark
+    tertiary = onTertiaryDark,
+    background = surfaceContainerLowDark,
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = primaryLight,
     secondary = secondaryLight,
-    tertiary = tertiaryLight
+    tertiary = tertiaryLight,
+    background = surfaceContainerLowestLight,
 )
 
 @Composable
@@ -32,7 +34,8 @@ fun AirCheckTheme(
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            val dynamic = if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            dynamic.copy(background = if (darkTheme) surfaceContainerLowDark else surfaceContainerLowestLight)
         }
 
         darkTheme -> DarkColorScheme

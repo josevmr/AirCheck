@@ -69,7 +69,10 @@ fun HistoricScreen(
         BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
             val isCompact = maxWidth < 600.dp
 
-            Surface(modifier = Modifier.fillMaxSize()) {
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = MaterialTheme.colorScheme.background
+            ) {
                 Column(
                     modifier = Modifier
                         .padding(horizontal = if (isCompact) 16.dp else 32.dp)
