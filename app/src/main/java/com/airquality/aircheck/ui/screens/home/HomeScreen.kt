@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -181,12 +180,12 @@ private fun Screen(
 
             Text(
                 text = "${stringResource(R.string.air_quality)} ${stringResource(R.string.aqi_text)}",
-                fontSize = 32.sp,
+                fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onBackground
             )
 
-            Spacer(Modifier.height(36.dp))
+            Spacer(Modifier.height(28.dp))
 
             Box(contentAlignment = Alignment.Center) {
                 Box(
@@ -274,24 +273,17 @@ private fun Screen(
         }
 
         item {
-            Box(
+            LazyVerticalGrid(
+                columns = GridCells.Adaptive(100.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .heightIn(
-                        min = 200.dp,
-                        max = 300.dp
-                    )
+                    .height(500.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                LazyVerticalGrid(
-                    columns = GridCells.Adaptive(100.dp),
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    state.data.parameters?.let { parameters ->
-                        items(parameters.size) { index ->
-                            ParameterCard(parameters[index], vm)
-                        }
+                state.data.parameters?.let { parameters ->
+                    items(parameters.size) { index ->
+                        ParameterCard(parameters[index], vm)
                     }
                 }
             }
