@@ -79,8 +79,8 @@ fun BottomNavigationBar(navController: NavController) {
     }
 }
 
-data class BottomNavItem<T : Any>(
-    val route: T,
+data class BottomNavItem(
+    val route: NavRoutes,
     val icon: ImageVector,
     val label: String
 )
