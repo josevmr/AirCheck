@@ -44,6 +44,17 @@
     public <init>(...);
 }
 
+# Koin Annotations + KSP
+-keep class **_Module { *; }
+-keepclassmembers class * {
+    @org.koin.core.annotation.* <methods>;
+}
+-keep class org.koin.** { *; }
+-keepclassmembers class * {
+    @org.koin.core.annotation.Module *;
+    @org.koin.core.annotation.Single *;
+}
+
 ###############################
 # Kotlin Serialization
 ###############################
