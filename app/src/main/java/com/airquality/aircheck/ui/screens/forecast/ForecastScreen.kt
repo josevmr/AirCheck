@@ -151,7 +151,7 @@ fun ForecastDayCard(
                             val colorModel = QualityColorBuilders.getQualityColorModel(value)
 
                             Column(
-                                modifier = Modifier.width(60.dp),
+                                modifier = Modifier.width(70.dp),
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
                                 Text(

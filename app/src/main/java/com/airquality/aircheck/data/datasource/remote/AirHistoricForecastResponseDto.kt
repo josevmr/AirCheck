@@ -38,14 +38,14 @@ data class CurrentHistoricForecastUnitsDto(
 @Serializable
 data class CurrentHistoricForecastDataDto(
     val time: List<String>,
-    val pm10: List<Double>,
+    val pm10: List<Double?>,
     @SerialName("pm2_5")
-    val pm25: List<Double>,
+    val pm25: List<Double?>,
     @SerialName("carbon_monoxide")
-    val carbonMonoxide: List<Double>,
-    val ozone: List<Double>,
+    val carbonMonoxide: List<Double?>,
+    val ozone: List<Double?>,
     @SerialName("nitrogen_dioxide")
-    val nitrogenDioxide: List<Double>,
+    val nitrogenDioxide: List<Double?>,
     @SerialName("sulphur_dioxide")
-    val sulphurDioxide: List<Double>
+    val sulphurDioxide: List<Double?>
 )
