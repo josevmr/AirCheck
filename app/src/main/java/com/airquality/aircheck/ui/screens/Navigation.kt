@@ -27,44 +27,31 @@ import com.airquality.aircheck.R
 import com.airquality.aircheck.ui.screens.forecast.ForecastScreen
 import com.airquality.aircheck.ui.screens.historic.HistoricScreen
 import com.airquality.aircheck.ui.screens.home.HomeScreen
-import kotlinx.serialization.Serializable
 
-@Serializable
-object Home
-
-@Serializable
-object Historic
-
-@Serializable
-object Forecast
+sealed class NavRoutes(val route: String) {
+    object Home : NavRoutes("home")
+    object Historic : NavRoutes("historic")
+    object Forecast : NavRoutes("forecast")
+}
 
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun Navigation(navController: NavHostController) {
 
-    NavHost(
-        navController = navController,
-        startDestination = Home
-    ) {
-        composable<Home> {
-            HomeScreen()
-        }
-        composable<Historic> {
-            HistoricScreen()
-        }
-        composable<Forecast> {
-            ForecastScreen()
-        }
+    NavHost(navController = navController, startDestination = NavRoutes.Home.route) {
+        composable(NavRoutes.Home.route) { HomeScreen() }
+        composable(NavRoutes.Historic.route) { HistoricScreen() }
+        composable(NavRoutes.Forecast.route) { ForecastScreen() }
     }
 }
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
-        BottomNavItem(Historic, Icons.Default.DateRange, stringResource(R.string.previous_days_text)),
-        BottomNavItem(Home, Icons.Default.Home, stringResource(R.string.home_text)),
-        BottomNavItem(Forecast, Icons.Default.SkipNext , stringResource(R.string.forecast_text))
+        BottomNavItem(NavRoutes.Historic, Icons.Default.DateRange, stringResource(R.string.previous_days_text)),
+        BottomNavItem(NavRoutes.Home, Icons.Default.Home, stringResource(R.string.home_text)),
+        BottomNavItem(NavRoutes.Forecast, Icons.Default.SkipNext , stringResource(R.string.forecast_text))
     )
 
     NavigationBar(
@@ -77,9 +64,9 @@ fun BottomNavigationBar(navController: NavController) {
             NavigationBarItem(
                 icon = { Icon(item.icon, contentDescription = item.label) },
                 label = { Text(item.label) },
-                selected = currentRoute == item.route::class.qualifiedName,
+                selected = currentRoute == item.route.route,
                 onClick = {
-                    navController.navigate(item.route::class.qualifiedName!!) {
+                    navController.navigate(item.route.route) {
                         popUpTo(navController.graph.findStartDestination().id) {
                             saveState = true
                         }
