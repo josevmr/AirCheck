@@ -277,7 +277,7 @@ private fun Screen(
                 columns = GridCells.Adaptive(100.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(500.dp),
+                    .height(550.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
