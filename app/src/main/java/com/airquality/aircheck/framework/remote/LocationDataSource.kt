@@ -25,7 +25,11 @@ class LocationDataSource(
     private suspend fun FusedLocationProviderClient.lastLocation(): Location? {
         return suspendCancellableCoroutine { continuation ->
             lastLocation.addOnSuccessListener { location ->
-                continuation.resume(location.toDomainLocation())
+                if (location != null) {
+                    continuation.resume(location.toDomainLocation())
+                } else {
+                    continuation.resume(Location(41.3870, 2.1701))
+                }
             }.addOnFailureListener {
                 continuation.resume(null)
             }
